@@ -7,9 +7,6 @@ import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
 
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import { async } from 'regenerator-runtime';
 
 const controlRecipes = async function () {
   try {
@@ -95,7 +92,6 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Upload the new recipe data
     await model.uploadRecipe(newRecipe);
-    console.log(model.state.recipe);
 
     // Render recipe
     recipeView.render(model.state.recipe);
