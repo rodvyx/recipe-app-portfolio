@@ -1,6 +1,5 @@
 import View from './View.js';
 import icons from 'url:../../img/icons.svg';
-import { Fraction } from 'fractional';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -38,6 +37,13 @@ class RecipeView extends View {
     if (time <= 20) return 'Quick';
     if (time <= 45) return 'Medium';
     return 'Slow cook';
+  }
+
+  _formatQuantity(quantity) {
+    if (!quantity) return '';
+
+    const rounded = Math.round(quantity * 100) / 100;
+    return rounded % 1 === 0 ? rounded : rounded.toFixed(2);
   }
 
   _generateMarkup() {
@@ -122,7 +128,7 @@ class RecipeView extends View {
         <h2 class="heading--2">Ingredients</h2>
 
         <ul class="recipe__ingredient-list">
-          ${this._data.ingredients.map(this._generateMarkupIngredient).join('')}
+          ${this._data.ingredients.map(this._generateMarkupIngredient.bind(this)).join('')}
         </ul>
       </div>
 
@@ -158,7 +164,7 @@ class RecipeView extends View {
         </svg>
 
         <div class="recipe__quantity">
-          ${ing.quantity ? new Fraction(ing.quantity).toString() : ''}
+          ${this._formatQuantity(ing.quantity)}
         </div>
 
         <div class="recipe__description">

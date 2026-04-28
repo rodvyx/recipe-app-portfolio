@@ -1,5 +1,8 @@
 # RecipeHub
 
+Live Demo:
+recipe-app-portfolio.vercel.app
+
 Modern recipe discovery web application built with JavaScript.
 
 ## Features
