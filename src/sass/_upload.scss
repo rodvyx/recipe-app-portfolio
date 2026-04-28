@@ -3,25 +3,39 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100rem;
-  background-color: white;
-  border-radius: 9px;
+  width: min(100rem, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border-radius: 2.4rem;
 
   padding: 5rem 6rem;
-  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4rem 9rem rgba(0, 0, 0, 0.35);
   z-index: 1000;
-  transition: all 0.5s;
+  transition: all 0.4s ease;
 
   .btn--close-modal {
     font-family: inherit;
-    color: inherit;
+    color: $color-grey-dark-2;
     position: absolute;
-    top: 0.5rem;
-    right: 1.6rem;
-    font-size: 3.5rem;
+    top: 1.8rem;
+    right: 2.4rem;
+    font-size: 3.4rem;
+    line-height: 1;
     cursor: pointer;
     border: none;
     background: none;
+    transition: all 0.2s;
+
+    &:hover {
+      color: $color-grey-dark-1;
+      transform: scale(1.05);
+    }
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 4.5rem 2.4rem 3rem;
+    border-radius: 1.8rem;
   }
 }
 
@@ -31,10 +45,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
   z-index: 100;
-  transition: all 0.5s;
+  transition: all 0.4s ease;
 }
 
 .hidden {
@@ -45,25 +59,31 @@
 .upload {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem 6rem;
+  gap: 4rem 5rem;
 
   &__column {
     display: grid;
-    grid-template-columns: 1fr 2.8fr;
-    align-items: center;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1rem;
 
     & label {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: inherit;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: $color-grey-dark-1;
+      text-transform: uppercase;
+      letter-spacing: 0.04rem;
+      margin-top: 0.6rem;
     }
 
     & input {
-      font-size: 1.5rem;
-      padding: 0.8rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 0.5rem;
+      font-family: inherit;
+      font-size: 1.55rem;
+      padding: 1.25rem 1.4rem;
+      border: 1px solid $color-grey-light-2;
+      border-radius: 1.2rem;
+      color: $color-grey-dark-1;
+      background-color: $color-grey-light-1;
       transition: all 0.2s;
 
       &::placeholder {
@@ -72,28 +92,35 @@
 
       &:focus {
         outline: none;
-        border: 1px solid $color-primary;
-        background-color: $color-grey-light-1;
+        border-color: rgba($color-primary, 0.65);
+        background-color: #ffffff;
+        box-shadow: 0 0 0 0.4rem rgba($color-primary, 0.12);
       }
     }
 
     & button {
-      grid-column: 1 / span 2;
       justify-self: center;
       margin-top: 1rem;
     }
   }
 
   &__heading {
-    font-size: 2.25rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    grid-column: 1/-1;
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: none;
+    margin-bottom: 1.2rem;
+    color: $color-grey-dark-1;
+    letter-spacing: -0.04rem;
   }
 
   &__btn {
     grid-column: 1 / -1;
     justify-self: center;
+    margin-top: 1rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 }
