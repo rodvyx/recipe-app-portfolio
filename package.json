@@ -1,22 +1,32 @@
 {
-  "name": "recipe-app-portfolio",
-  "version": "1.0.0",
-  "description": "Modern recipe search and upload application",
+  "name": "recipehub",
+  "version": "2.0.0",
+  "description": "Modern recipe discovery app with search, bookmarks, recently viewed recipes, and custom uploads.",
   "source": "index.html",
   "scripts": {
     "dev": "parcel index.html",
     "start": "parcel index.html",
-    "build": "parcel build index.html --dist-dir dist"
+    "build": "parcel build index.html --dist-dir dist",
+    "clean": "rimraf .parcel-cache dist"
   },
   "author": "Rodrick",
   "license": "MIT",
+  "keywords": [
+    "javascript",
+    "mvc",
+    "recipes",
+    "parcel",
+    "sass",
+    "portfolio"
+  ],
   "devDependencies": {
-    "parcel": "latest",
-    "sass": "latest"
+    "parcel": "^2.12.0",
+    "sass": "^1.77.8",
+    "rimraf": "^6.0.1"
   },
   "dependencies": {
-    "core-js": "latest",
+    "core-js": "^3.37.1",
     "fractional": "^1.0.0",
-    "regenerator-runtime": "latest"
+    "regenerator-runtime": "^0.14.1"
   }
 }

@@ -15,6 +15,7 @@
 
   <body>
     <div class="container">
+      <!-- HEADER -->
       <header class="header">
         <a href="/" class="brand" aria-label="RecipeHub home">
           <span class="brand__icon">🍽️</span>
@@ -28,19 +29,20 @@
             placeholder="Search recipes or ingredients..."
             aria-label="Search recipes"
           />
+
           <button class="btn search__btn" type="submit">
-            <svg class="search__icon" aria-hidden="true">
+            <svg class="search__icon">
               <use href="src/img/icons.svg#icon-search"></use>
             </svg>
             <span>Search</span>
           </button>
         </form>
 
-        <nav class="nav" aria-label="Recipe actions">
+        <nav class="nav">
           <ul class="nav__list">
             <li class="nav__item">
-              <button class="nav__btn nav__btn--add-recipe" type="button">
-                <svg class="nav__icon" aria-hidden="true">
+              <button class="nav__btn nav__btn--add-recipe">
+                <svg class="nav__icon">
                   <use href="src/img/icons.svg#icon-edit"></use>
                 </svg>
                 <span>Add recipe</span>
@@ -48,8 +50,8 @@
             </li>
 
             <li class="nav__item">
-              <button class="nav__btn nav__btn--bookmarks" type="button">
-                <svg class="nav__icon" aria-hidden="true">
+              <button class="nav__btn nav__btn--bookmarks">
+                <svg class="nav__icon">
                   <use href="src/img/icons.svg#icon-bookmark"></use>
                 </svg>
                 <span>Bookmarks</span>
@@ -57,14 +59,9 @@
 
               <div class="bookmarks">
                 <ul class="bookmarks__list">
-                  <div class="message">
-                    <div>
-                      <svg aria-hidden="true">
-                        <use href="src/img/icons.svg#icon-smile"></use>
-                      </svg>
-                    </div>
-                    <p>No saved recipes yet. Search for a recipe and bookmark your favorites.</p>
-                  </div>
+                  <li class="message message--small">
+                    <p>No saved recipes yet.</p>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -72,29 +69,35 @@
         </nav>
       </header>
 
+      <!-- LEFT SIDEBAR -->
       <aside class="search-results">
         <ul class="results"></ul>
+
         <div class="pagination"></div>
 
-    <section class="recently-viewed">
-      <h3 class="recently-viewed__title">Recently viewed</h3>
-     <ul class="recently-viewed__list">
-    <div class="message message--small">
-      <p>Your viewed recipes will appear here.</p>
-    </div>
-    </ul>
-    </section>
+        <!-- RECENTLY VIEWED -->
+        <section class="recently-viewed">
+          <h3 class="recently-viewed__title">Recently Viewed</h3>
+
+          <ul class="recently-viewed__list">
+            <li class="message message--small">
+              <p>Your viewed recipes will appear here.</p>
+            </li>
+          </ul>
+        </section>
 
         <p class="copyright">
-          RecipeHub is a modern recipe discovery app built with JavaScript, MVC architecture,
-          REST API integration, Sass, bookmarks, pagination, and custom recipe uploads.
+          RecipeHub is a modern recipe discovery application built with
+          JavaScript, MVC architecture, REST APIs, Sass, bookmarks,
+          pagination, and custom recipe uploads.
         </p>
       </aside>
 
+      <!-- MAIN CONTENT -->
       <main class="recipe">
         <div class="message">
           <div>
-            <svg aria-hidden="true">
+            <svg>
               <use href="src/img/icons.svg#icon-smile"></use>
             </svg>
           </div>
@@ -103,44 +106,33 @@
       </main>
     </div>
 
+    <!-- MODAL -->
     <div class="overlay hidden"></div>
 
-    <div class="add-recipe-window hidden" role="dialog" aria-modal="true">
-      <button class="btn--close-modal" type="button" aria-label="Close modal">
-        &times;
-      </button>
+    <div class="add-recipe-window hidden">
+      <button class="btn--close-modal">&times;</button>
 
       <form class="upload">
         <div class="upload__column">
-          <h3 class="upload__heading">Recipe details</h3>
+          <h3 class="upload__heading">Recipe Data</h3>
 
           <label>Title</label>
-          <input required name="title" type="text" placeholder="Chicken pasta" />
+          <input required name="title" type="text" />
 
-          <label>Recipe URL</label>
-          <input
-            required
-            name="sourceUrl"
-            type="url"
-            placeholder="https://example.com/recipe"
-          />
+          <label>URL</label>
+          <input required name="sourceUrl" type="text" />
 
           <label>Image URL</label>
-          <input
-            required
-            name="image"
-            type="url"
-            placeholder="https://example.com/image.jpg"
-          />
+          <input required name="image" type="text" />
 
           <label>Publisher</label>
-          <input required name="publisher" type="text" placeholder="Your name" />
+          <input required name="publisher" type="text" />
 
-          <label>Cooking time</label>
-          <input required name="cookingTime" type="number" min="1" placeholder="30" />
+          <label>Prep time</label>
+          <input required name="cookingTime" type="number" />
 
           <label>Servings</label>
-          <input required name="servings" type="number" min="1" placeholder="4" />
+          <input required name="servings" type="number" />
         </div>
 
         <div class="upload__column">
@@ -148,53 +140,32 @@
 
           <label>Ingredient 1</label>
           <input
-            required
-            name="ingredient-1"
             type="text"
-            placeholder="0.5,kg,Rice"
+            name="ingredient-1"
+            placeholder="Format: Quantity,Unit,Description"
           />
 
           <label>Ingredient 2</label>
-          <input
-            name="ingredient-2"
-            type="text"
-            placeholder="1,,Avocado"
-          />
+          <input type="text" name="ingredient-2" />
 
           <label>Ingredient 3</label>
-          <input
-            name="ingredient-3"
-            type="text"
-            placeholder=",,Salt"
-          />
+          <input type="text" name="ingredient-3" />
 
           <label>Ingredient 4</label>
-          <input
-            name="ingredient-4"
-            type="text"
-            placeholder="Quantity,Unit,Description"
-          />
+          <input type="text" name="ingredient-4" />
 
           <label>Ingredient 5</label>
-          <input
-            name="ingredient-5"
-            type="text"
-            placeholder="Quantity,Unit,Description"
-          />
+          <input type="text" name="ingredient-5" />
 
           <label>Ingredient 6</label>
-          <input
-            name="ingredient-6"
-            type="text"
-            placeholder="Quantity,Unit,Description"
-          />
+          <input type="text" name="ingredient-6" />
         </div>
 
-        <button class="btn upload__btn" type="submit">
-          <svg aria-hidden="true">
+        <button class="btn upload__btn">
+          <svg>
             <use href="src/img/icons.svg#icon-upload-cloud"></use>
           </svg>
-          <span>Upload recipe</span>
+          <span>Upload</span>
         </button>
       </form>
     </div>
