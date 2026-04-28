@@ -1,20 +1,12 @@
-import icons from 'url:../../img/icons.svg'; // Parcel 2
+import icons from 'url:../../img/icons.svg';
 
 export default class View {
   _data;
 
-  /**
-   * Render the received object to the DOM
-   * @param {Object | Object[]} data The data to be rendered (e.g. recipe)
-   * @param {boolean} [render=true] If false, create markup string instead of rendering to the DOM
-   * @returns {undefined | string} A markup string is returned if render=false
-   * @this {Object} View instance
-   * @author Jonas Schmedtmann
-   * @todo Finish implementation
-   */
   render(data, render = true) {
-    if (!data || (Array.isArray(data) && data.length === 0))
+    if (!data || (Array.isArray(data) && data.length === 0)) {
       return this.renderError();
+    }
 
     this._data = data;
     const markup = this._generateMarkup();
@@ -26,31 +18,31 @@ export default class View {
   }
 
   update(data) {
+    if (!data) return;
+
     this._data = data;
     const newMarkup = this._generateMarkup();
 
     const newDOM = document.createRange().createContextualFragment(newMarkup);
     const newElements = Array.from(newDOM.querySelectorAll('*'));
-    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+    const currentElements = Array.from(this._parentElement.querySelectorAll('*'));
 
-    newElements.forEach((newEl, i) => {
-      const curEl = curElements[i];
-      // console.log(curEl, newEl.isEqualNode(curEl));
+    newElements.forEach((newEl, index) => {
+      const currentEl = currentElements[index];
+      if (!currentEl) return;
 
-      // Updates changed TEXT
       if (
-        !newEl.isEqualNode(curEl) &&
+        !newEl.isEqualNode(currentEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        // console.log('💥', newEl.firstChild.nodeValue.trim());
-        curEl.textContent = newEl.textContent;
+        currentEl.textContent = newEl.textContent;
       }
 
-      // Updates changed ATTRIBUES
-      if (!newEl.isEqualNode(curEl))
+      if (!newEl.isEqualNode(currentEl)) {
         Array.from(newEl.attributes).forEach(attr =>
-          curEl.setAttribute(attr.name, attr.value)
+          currentEl.setAttribute(attr.name, attr.value)
         );
+      }
     });
   }
 
@@ -60,12 +52,13 @@ export default class View {
 
   renderSpinner() {
     const markup = `
-      <div class="spinner">
-        <svg>
+      <div class="spinner" role="status" aria-label="Loading">
+        <svg aria-hidden="true">
           <use href="${icons}#icon-loader"></use>
         </svg>
       </div>
     `;
+
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
@@ -74,13 +67,14 @@ export default class View {
     const markup = `
       <div class="error">
         <div>
-          <svg>
+          <svg aria-hidden="true">
             <use href="${icons}#icon-alert-triangle"></use>
           </svg>
         </div>
         <p>${message}</p>
       </div>
     `;
+
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
@@ -89,13 +83,14 @@ export default class View {
     const markup = `
       <div class="message">
         <div>
-          <svg>
+          <svg aria-hidden="true">
             <use href="${icons}#icon-smile"></use>
           </svg>
         </div>
         <p>${message}</p>
       </div>
     `;
+
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }

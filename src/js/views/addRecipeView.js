@@ -1,9 +1,8 @@
 import View from './View.js';
-import icons from 'url:../../img/icons.svg'; // Parcel 2
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
-  _message = 'Recipe was successfully uploaded :)';
+  _message = 'Recipe uploaded successfully. It has been added to your bookmarks.';
 
   _window = document.querySelector('.add-recipe-window');
   _overlay = document.querySelector('.overlay');
@@ -19,6 +18,10 @@ class AddRecipeView extends View {
   toggleWindow() {
     this._overlay.classList.toggle('hidden');
     this._window.classList.toggle('hidden');
+
+    if (!this._window.classList.contains('hidden')) {
+      this._window.querySelector('input')?.focus();
+    }
   }
 
   _addHandlerShowWindow() {
@@ -28,18 +31,32 @@ class AddRecipeView extends View {
   _addHandlerHideWindow() {
     this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
     this._overlay.addEventListener('click', this.toggleWindow.bind(this));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !this._window.classList.contains('hidden')) {
+        this.toggleWindow();
+      }
+    });
   }
 
   addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
+
       const dataArr = [...new FormData(this)];
       const data = Object.fromEntries(dataArr);
+
       handler(data);
     });
   }
 
-  _generateMarkup() {}
+  clearForm() {
+    this._parentElement.reset();
+  }
+
+  _generateMarkup() {
+    return '';
+  }
 }
 
 export default new AddRecipeView();

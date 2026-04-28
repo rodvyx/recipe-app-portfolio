@@ -1,5 +1,5 @@
 import View from './View.js';
-import icons from 'url:../../img/icons.svg'; // Parcel 2
+import icons from 'url:../../img/icons.svg';
 
 class PreviewView extends View {
   _parentElement = '';
@@ -9,21 +9,31 @@ class PreviewView extends View {
 
     return `
       <li class="preview">
-        <a class="preview__link ${
-          this._data.id === id ? 'preview__link--active' : ''
-        }" href="#${this._data.id}">
+        <a 
+          class="preview__link ${
+            this._data.id === id ? 'preview__link--active' : ''
+          }" 
+          href="#${this._data.id}"
+          aria-label="Open recipe ${this._data.title}"
+        >
           <figure class="preview__fig">
-            <img src="${this._data.image}" alt="${this._data.title}" />
+            <img src="${this._data.image}" alt="${this._data.title}" loading="lazy" />
           </figure>
+
           <div class="preview__data">
             <h4 class="preview__title">${this._data.title}</h4>
             <p class="preview__publisher">${this._data.publisher}</p>
-            <div class="preview__user-generated ${
-              this._data.key ? '' : 'hidden'
-            }">
-              <svg>
-              <use href="${icons}#icon-user"></use>
-              </svg>
+
+            <div class="preview__meta">
+              <span class="preview__tag">Recipe</span>
+
+              <div class="preview__user-generated ${
+                this._data.key ? '' : 'hidden'
+              }">
+                <svg>
+                  <use href="${icons}#icon-user"></use>
+                </svg>
+              </div>
             </div>
           </div>
         </a>
