@@ -1,33 +1,41 @@
 .preview {
+  margin: 0 1.6rem 1.2rem;
+
   &__link {
     &:link,
     &:visited {
       display: flex;
       align-items: center;
-      padding: 1.5rem 3.25rem;
-      transition: all 0.3s;
-      border-right: 1px solid #fff;
+      padding: 1.4rem;
+      transition: all 0.25s ease;
       text-decoration: none;
+      border-radius: 1.8rem;
+      border: 1px solid transparent;
     }
 
     &:hover {
-      background-color: $color-grey-light-1;
+      background-color: #ffffff;
+      border-color: $color-grey-light-2;
       transform: translateY(-2px);
+      box-shadow: 0 1.4rem 3rem rgba(15, 23, 42, 0.08);
     }
 
     &--active {
-      background-color: $color-grey-light-1;
+      background-color: #ffffff;
+      border-color: rgba($color-primary, 0.35);
+      box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.08);
     }
   }
 
   &__fig {
-    flex: 0 0 5.8rem;
-    border-radius: 50%;
+    flex: 0 0 6.4rem;
+    border-radius: 1.8rem;
     overflow: hidden;
-    height: 5.8rem;
-    margin-right: 2rem;
+    height: 6.4rem;
+    margin-right: 1.6rem;
     position: relative;
     backface-visibility: hidden;
+    box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.12);
 
     &::before {
       content: '';
@@ -37,12 +45,9 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
-      opacity: 0.4;
+      background: $gradient;
+      opacity: 0.2;
+      z-index: 1;
     }
 
     img {
@@ -57,21 +62,22 @@
   &__data {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 2rem;
-    row-gap: 0.1rem;
+    grid-template-columns: 1fr 2.4rem;
+    row-gap: 0.3rem;
     align-items: center;
+    min-width: 0;
   }
 
   &__title {
-    grid-column: 1/-1;
+    grid-column: 1 / -1;
     font-size: 1.45rem;
-    color: $color-primary;
-    text-transform: uppercase;
-    font-weight: 600;
+    color: $color-grey-dark-1;
+    text-transform: none;
+    font-weight: 900;
+    letter-spacing: -0.02rem;
 
-    // This is how text is truncated!
     text-overflow: ellipsis;
-    max-width: 25rem;
+    max-width: 24rem;
     white-space: nowrap;
     overflow: hidden;
   }
@@ -80,25 +86,31 @@
     font-size: 1.15rem;
     color: $color-grey-dark-2;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 800;
+    letter-spacing: 0.04rem;
+
+    text-overflow: ellipsis;
+    max-width: 18rem;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   &__user-generated {
-    background-color: darken($color-grey-light-2, 2%);
+    background-color: rgba($color-primary, 0.1);
+    border: 1px solid rgba($color-primary, 0.18);
 
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 10rem;
+    height: 2.4rem;
+    width: 2.4rem;
+    border-radius: 999px;
 
     margin-left: auto;
-    margin-right: 1.75rem;
 
     svg {
-      height: 1.2rem;
-      width: 1.2rem;
+      height: 1.3rem;
+      width: 1.3rem;
       fill: $color-primary;
     }
   }

@@ -1,13 +1,12 @@
 .recipe {
-  background-color: $color-grey-light-1;
+  grid-area: recipe;
+  background-color: #ffffff;
 
-  ///////////
-  // FIGURE
   &__fig {
-    height: 32rem;
+    height: 34rem;
     position: relative;
-    // transform: scale(1.04) translateY(-1px);
     transform-origin: top;
+    overflow: hidden;
 
     &::before {
       content: '';
@@ -17,12 +16,11 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
-      opacity: 0.6;
+      background:
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.75)),
+        $gradient;
+      opacity: 0.85;
+      z-index: 1;
     }
   }
 
@@ -35,82 +33,97 @@
 
   &__title {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 20%) skewY(-6deg);
+    bottom: 3.5rem;
+    left: 5rem;
+    right: 5rem;
+    transform: none;
     color: #fff;
-    font-weight: 700;
-    font-size: 3.25rem;
-    text-transform: uppercase;
-    width: 50%;
-    line-height: 1.95;
-    text-align: center;
+    font-weight: 900;
+    font-size: 3.6rem;
+    text-transform: none;
+    width: auto;
+    line-height: 1.15;
+    text-align: left;
+    letter-spacing: -0.08rem;
+    z-index: 2;
 
     span {
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
-      padding: 1.3rem 2rem;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
+      padding: 0;
+      background-image: none;
+      text-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
     }
 
     @media only screen and (max-width: $bp-medium) {
-      width: 70%;
+      left: 3rem;
+      right: 3rem;
+      font-size: 3rem;
     }
   }
 
-  ///////////
-  // DETAILS
   &__details {
     display: flex;
     align-items: center;
-    padding: 7.5rem 8rem 3.5rem 8rem;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+    padding: 3rem 5rem;
+    border-bottom: 1px solid $color-grey-light-2;
+    background-color: #ffffff;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 2.4rem;
+    }
   }
 
   &__info {
-    font-size: 1.65rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     display: flex;
     align-items: center;
+    padding: 1rem 1.4rem;
+    border-radius: 999px;
+    background-color: $color-grey-light-1;
+    color: $color-grey-dark-2;
+    font-weight: 800;
 
     &:not(:last-child) {
-      margin-right: 4.5rem;
+      margin-right: 0;
     }
   }
 
   &__info-icon {
-    height: 2.35rem;
-    width: 2.35rem;
+    height: 2.2rem;
+    width: 2.2rem;
     fill: $color-primary;
-    margin-right: 1.15rem;
+    margin-right: 1rem;
   }
 
   &__info-data {
     margin-right: 0.5rem;
-    font-weight: 700;
+    font-weight: 900;
+    color: $color-grey-dark-1;
   }
 
   &__info-buttons {
     display: flex;
-    margin-left: 1.6rem;
+    margin-left: 1.2rem;
     transform: translateY(-1px);
   }
 
   &__user-generated {
-    background-color: darken($color-grey-light-2, 2%);
+    background-color: rgba($color-primary, 0.1);
+    border: 1px solid rgba($color-primary, 0.18);
 
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 10rem;
+    height: 4.4rem;
+    width: 4.4rem;
+    border-radius: 999px;
 
     margin-left: auto;
-    margin-right: 1.75rem;
+    margin-right: 0.6rem;
 
     svg {
       height: 2.25rem;
@@ -119,27 +132,40 @@
     }
   }
 
-  ///////////
-  // INGREDIENTS
   &__ingredients {
-    padding: 5rem 8rem;
+    padding: 5rem;
     font-size: 1.6rem;
-    line-height: 1.4;
-    background-color: $color-grey-light-2;
+    line-height: 1.5;
+    background-color: #f8fafc;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 3rem 2.4rem;
+    }
   }
 
   &__ingredient-list {
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem;
     list-style: none;
+
+    @media only screen and (max-width: $bp-small) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__ingredient {
     display: flex;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid $color-grey-light-2;
+    border-radius: 1.6rem;
+    box-shadow: 0 1rem 2.2rem rgba(15, 23, 42, 0.04);
   }
 
   &__icon {
@@ -148,32 +174,47 @@
     fill: $color-primary;
     margin-right: 1.1rem;
     flex: 0 0 auto;
-    margin-top: 0.1rem;
+    margin-top: 0.2rem;
   }
 
   &__quantity {
     margin-right: 0.5rem;
     flex: 0 0 auto;
+    font-weight: 900;
+    color: $color-grey-dark-1;
   }
 
-  ///////////
-  // DIRECTIONS
+  &__description {
+    color: $color-grey-dark-2;
+    font-weight: 700;
+  }
+
+  &__unit {
+    color: $color-grey-dark-1;
+  }
+
   &__directions {
-    padding: 5rem 10rem;
-    padding-bottom: 5rem;
+    padding: 5rem 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #ffffff;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 4rem 2.4rem;
+    }
   }
 
   &__directions-text {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
     text-align: center;
     margin-bottom: 3.5rem;
     color: $color-grey-dark-2;
+    max-width: 62rem;
   }
 
   &__publisher {
-    font-weight: 700;
+    font-weight: 900;
+    color: $color-grey-dark-1;
   }
 }
