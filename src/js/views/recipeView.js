@@ -113,14 +113,12 @@ class RecipeView extends View {
               <use href="${icons}#icon-user"></use>
             </svg>
           </div>
-
           <button class="btn--round btn--bookmark" aria-label="Save recipe">
-            <svg>
-              <use href="${icons}#icon-bookmark${
-      this._data.bookmarked ? '-fill' : ''
-    }"></use>
-            </svg>
-          </button>
+            <span class="bookmark-symbol">
+             ${this._data.bookmarked ? '★' : '☆'}
+            </span>
+            </button>
+          
         </div>
       </div>
 
